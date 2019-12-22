@@ -1,0 +1,121 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- Version du fichier -->
+    <modelVersion>4.0.0</modelVersion>
+    <!-- POM parent -->
+    <!-- Definition de l'artefact -->
+    <groupId>org.fifiz.training.java</groupId>
+    <artifactId>fifiz-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>fifiz-parent</name>
+    <description>Pom parent de mes dev</description>
+    <!-- FIXME change it to the project's website -->
+    <url>https://bdelion.github.io/fifiz-parent/</url>
+    <!-- Gestionnaire de code source -->
+    <!-- https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
+    <scm>
+        <url>https://github.com/bdelion/fifiz-parent</url>
+        <connection>scm:git:git://github.com/bdelion/fifiz-parent.git</connection>
+        <developerConnection>scm:git:git@github.com:bdelion/fifiz-parent.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/bdelion/fifiz-parent/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+    <developers>
+        <developer>
+            <email>bertrand.delion@free.fr</email>
+            <name>Bertrand Delion</name>
+            <url>https://github.com/bdelion</url>
+            <id>bdelion</id>
+        </developer>
+    </developers>
+    <!-- mvn deploy -Dregistry=https://maven.pkg.github.com/bdelion -Dtoken=a719eb50ee05ca3fb5ea7249cefd3eae9f4a087e -->
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Permet d'afficher des éléments Git via le endpoint actuator /info -->
+            <!-- https://www.codeflow.site/fr/article/spring-git-information -->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <verbose>false</verbose>
+                    <excludeProperties>
+                        <excludeProperty>git.build.host</excludeProperty>
+                        <excludeProperty>git.commit.id.abbrev</excludeProperty>
+                    </excludeProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!-- Sets the VM argument line used when unit tests are run. -->
+                    <argLine>${surefireArgLine}</argLine>
+                    <!-- Skips unit tests if the value of skip.unit.tests property is true -->
+                    <skipTests>${skip.unit.tests}</skipTests>
+                    <!-- Excludes integration tests when unit tests are run. -->
+                    <excludes>
+                        <exclude>**/IT*.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <!--
+                    Prepares the property pointing to the JaCoCo runtime agent which
+                    is passed as VM argument when Maven the Surefire plugin is executed.
+                    -->
+                    <execution>
+                        <id>pre-unit-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                            <!--
+                            Sets the name of the property containing the settings
+                            for JaCoCo runtime agent.
+                            -->
+                            <propertyName>surefireArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <!--
+                    Ensures that the code coverage report for unit tests is created after
+                    unit tests have been run.
+                    -->
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
