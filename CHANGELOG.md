@@ -10,9 +10,32 @@ Tous les changements notables apportés à ce projet seront documentés dans ce 
 * Intégration plus propre de Jacoco.
 * Intégration plus propre de SonarCloud.
 
-## [0.0.1] - 2019-mm-jj
+## [0.0.1](Lien vers tag) - 2019-mm-jj
 
-### Feature
+### Added
+
+* :pencil: Mise en place CHANGELOG.md.
+
+### Changed
 
 * :pencil: Nouveau README.md.
-* :pencil: Mise en place CHANGELOG.md.
+
+### Deprecated
+
+* 
+
+### Removed
+
+* 
+
+### Fixed
+
+* 
+
+### Security
+
+* 
+
+### Dependencies
+
+*
