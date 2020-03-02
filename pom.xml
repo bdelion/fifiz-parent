@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <!-- Version du fichier -->
     <modelVersion>4.0.0</modelVersion>
+
     <!-- Pom parent -->
+
     <!-- Definition de l'artefact -->
     <groupId>fr.fifiz.socle.java</groupId>
     <artifactId>java-parent</artifactId>
@@ -14,7 +15,12 @@
     <!-- FIXME change it to the project's website -->
     <url>https://bdelion.github.io/java-parent/</url>
     <!-- FIXME add licences -->
-    
+
+    <organization>
+        <name>FIFIZ Company</name>
+        <url>https://bdelion.github.io/</url>
+    </organization>
+
     <!-- Gestionnaire de code source -->
     <!-- https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
     <scm>
@@ -31,23 +37,56 @@
         <system>GitHub Actions</system>
         <url>https://github.com/bdelion/java-parent/actions</url>
     </ciManagement>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub bdelion/${project.artifactId} Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
+        </repository>
+    </distributionManagement>
     <developers>
         <developer>
-            <email>bertrand.delion@free.fr</email>
-            <name>Bertrand Delion</name>
-            <url>https://github.com/bdelion</url>
             <id>bdelion</id>
+            <name>Bertrand Delion</name>
+            <email>bertrand.delion@free.fr</email>
+            <url>https://github.com/bdelion</url>
+            <organization>FIFIZ Company</organization>
+            <organizationUrl>https://github.com/bdelion</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
         </developer>
     </developers>
     <!-- mvn deploy -Dregistry=https://maven.pkg.github.com/bdelion -Dtoken=a719eb50ee05ca3fb5ea7249cefd3eae9f4a087e -->
 
     <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <junit.version>5.6.0</junit.version>
+
+        <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -56,14 +95,29 @@
             <plugin>
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${git-commit-id-plugin.version}</version>
                 <configuration>
-                    <verbose>false</verbose>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <verbose>true</verbose>
                     <excludeProperties>
                         <excludeProperty>git.build.host</excludeProperty>
                         <excludeProperty>git.commit.id.abbrev</excludeProperty>
                     </excludeProperties>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>validate-the-git-infos</id>
+                        <goals>
+                            <goal>validateRevision</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -80,6 +134,7 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <!-- You can run jacoco in the default profile with: mvn jacoco:prepare-agent test jacoco:report -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -122,6 +177,43 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+
+            <!-- Goal qui copie les dépendances du projet du référentiel vers un emplacement défini. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/dependency-jars/</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Goal qui construit un fichier JAR (Java Archive) executable à partir des ressources et des classes de projet compilées. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>dependency-jars/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
