@@ -75,6 +75,7 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
         <!-- Info référentiel Git -->
         <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
         <!-- Tests -->
@@ -307,6 +308,28 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Analyse des dépendances -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>true</failOnWarning>
+                            <!-- <ignoreNonCompile>true</ignoreNonCompile> -->
+                            <ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependency>org.junit.jupiter:junit-jupiter-*::</ignoredUnusedDeclaredDependency>
+                            </ignoredUnusedDeclaredDependencies>
+                            <outputXML>true</outputXML>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
