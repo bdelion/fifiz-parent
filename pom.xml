@@ -1,72 +1,249 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <!-- Version du fichier -->
     <modelVersion>4.0.0</modelVersion>
-    <!-- POM parent -->
+
+    <!-- Pom parent -->
+
     <!-- Definition de l'artefact -->
-    <groupId>org.fifiz.training.java</groupId>
-    <artifactId>fifiz-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>fr.fifiz.socle.java</groupId>
+    <artifactId>java-parent</artifactId>
+    <version>8.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>fifiz-parent</name>
-    <description>Pom parent de mes dev</description>
+    <name>FIFIZ :: Socle Java :: java-parent</name>
+    <description>Pom parent Java de mes projets </description>
     <!-- FIXME change it to the project's website -->
-    <url>https://bdelion.github.io/fifiz-parent/</url>
+    <url>https://bdelion.github.io/java-parent/</url>
+    <!-- FIXME add licences -->
+
+    <organization>
+        <name>FIFIZ Company</name>
+        <url>https://bdelion.github.io/</url>
+    </organization>
+
     <!-- Gestionnaire de code source -->
     <!-- https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
     <scm>
-        <url>https://github.com/bdelion/fifiz-parent</url>
-        <connection>scm:git:git://github.com/bdelion/fifiz-parent.git</connection>
-        <developerConnection>scm:git:git@github.com:bdelion/fifiz-parent.git</developerConnection>
+        <url>https://github.com/bdelion/java-parent</url>
+        <connection>scm:git:git://github.com/bdelion/java-parent.git</connection>
+        <developerConnection>scm:git:git@github.com:bdelion/java-parent.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
-        <url>https://github.com/bdelion/fifiz-parent/issues</url>
+        <url>https://github.com/bdelion/java-parent/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
     <ciManagement>
         <system>GitHub Actions</system>
-        <url>https://github.com/bdelion/fifiz-parent/actions</url>
+        <url>https://github.com/bdelion/java-parent/actions</url>
     </ciManagement>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub bdelion/${project.artifactId} Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
+        </repository>
+    </distributionManagement>
     <developers>
         <developer>
-            <email>bertrand.delion@free.fr</email>
-            <name>Bertrand Delion</name>
-            <url>https://github.com/bdelion</url>
             <id>bdelion</id>
+            <name>Bertrand Delion</name>
+            <email>bertrand.delion@free.fr</email>
+            <url>https://github.com/bdelion</url>
+            <organization>FIFIZ Company</organization>
+            <organizationUrl>https://github.com/bdelion</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
         </developer>
     </developers>
     <!-- mvn deploy -Dregistry=https://maven.pkg.github.com/bdelion -Dtoken=a719eb50ee05ca3fb5ea7249cefd3eae9f4a087e -->
 
     <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
+        <!-- Java version -->
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- Plugins version -->
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
+        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+        <!-- Info référentiel Git -->
+        <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
+        <!-- Tests -->
+        <junit.version>5.6.0</junit.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
+        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+        <jacoco.utReportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.utReportPath>
+        <jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.itReportPath>
+        <!-- FIXME https://bcouetil.gitlab.io/academy/BP-maven.html#sonarqube-with-jacoco-for-coverage
+            <sonar.jacoco.reportPaths>${jacoco.utReportPath}, ${jacoco.itReportPath}</sonar.jacoco.reportPaths>
+        -->
+        <!-- Assembly -->
+        <maven-assembly-plugin-skip>true</maven-assembly-plugin-skip>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Pour les tests -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
-            <!-- Permet d'afficher des éléments Git via le endpoint actuator /info -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+            </plugin>
+            <!-- Plugin Maven qui inclut les informations du référentiel git au moment de la construction dans un POJO / * .properties -->
             <!-- https://www.codeflow.site/fr/article/spring-git-information -->
             <plugin>
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${git-commit-id-plugin.version}</version>
                 <configuration>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                    <format>json</format>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
                     <verbose>false</verbose>
                     <excludeProperties>
                         <excludeProperty>git.build.host</excludeProperty>
                         <excludeProperty>git.commit.id.abbrev</excludeProperty>
                     </excludeProperties>
+                    <!-- this is false by default, forces the plugin to generate the git.properties file -->
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <!-- The path for the properties file to be generated. See Super Pom for default variable reference https://maven.apache.org/guides/introduction/introduction-to-the-pom.html -->
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git-properties.json</generateGitPropertiesFilename>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
             </plugin>
+            <!-- Tests -->
+            <!-- Gestion des Tests avec Jacoco -->
+            <!-- You can run jacoco in the default profile with: mvn jacoco:prepare-agent test jacoco:report -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <!-- UNIT TESTS -->
+                    <!-- Prepares the property pointing to the JaCoCo runtime agent which is passed as VM argument when Maven the Surefire plugin is executed. -->
+                    <execution>
+                        <id>pre-unit-test</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${jacoco.utReportPath}</destFile>
+                            <dataFile>${jacoco.utReportPath}</dataFile>
+                            <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
+                            <propertyName>surefireArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${jacoco.utReportPath}</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- INTEGRATION TESTS -->
+                    <!-- Prepares the property pointing to the JaCoCo runtime agent which is passed as VM argument when Maven the Surefire plugin is executed. -->
+                    <execution>
+                        <id>pre-integration-test</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${jacoco.itReportPath}</destFile>
+                            <dataFile>${jacoco.itReportPath}</dataFile>
+                            <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
+                            <propertyName>surefireArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
+                    <execution>
+                        <id>post-integration-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${jacoco.itReportPath}</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Exécution des TU avec Surfire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <runOrder>alphabetical</runOrder>
                     <!-- Sets the VM argument line used when unit tests are run. -->
                     <argLine>${surefireArgLine}</argLine>
                     <!-- Skips unit tests if the value of skip.unit.tests property is true -->
@@ -77,46 +254,59 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <!-- Exécution des TI avec Failsafe -->
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <configuration>
+                    <runOrder>alphabetical</runOrder>
+                </configuration>
                 <executions>
-                    <!--
-                    Prepares the property pointing to the JaCoCo runtime agent which
-                    is passed as VM argument when Maven the Surefire plugin is executed.
-                    -->
                     <execution>
-                        <id>pre-unit-test</id>
+                        <id>integration-tests</id>
+                        <phase>integration-test</phase>
                         <goals>
-                            <goal>prepare-agent</goal>
+                            <goal>integration-test</goal>
                         </goals>
-                        <configuration>
-                            <!-- Sets the path to the file which contains the execution data. -->
-                            <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
-                            <!--
-                            Sets the name of the property containing the settings
-                            for JaCoCo runtime agent.
-                            -->
-                            <propertyName>surefireArgLine</propertyName>
-                        </configuration>
                     </execution>
-                    <!--
-                    Ensures that the code coverage report for unit tests is created after
-                    unit tests have been run.
-                    -->
+                    <!-- to exit in error on test fail -->
                     <execution>
-                        <id>post-unit-test</id>
-                        <phase>test</phase>
+                        <id>verify</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>report</goal>
+                            <goal>verify</goal>
                         </goals>
-                        <configuration>
-                            <!-- Sets the path to the file which contains the execution data. -->
-                            <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
-                            <!-- Sets the output directory for the code coverage report. -->
-                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven Assembly Plugin -->
+            <!-- Goal qui construit un fichier JAR (Java Archive) executable à partir des ressources et des classes de projet compilées. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
+                <configuration>
+                    <skipAssembly>${maven-assembly-plugin-skip}</skipAssembly>
+                    <!-- get all project dependencies -->
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <!-- MainClass in mainfest make a executable jar -->
+                    <archive>
+                        <manifest>
+                            <mainClass>${main-class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
