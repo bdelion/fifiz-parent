@@ -5,14 +5,12 @@ et ce projet adhère à [Semantic Versioning](https://semver.org/lang/fr/).
 
 Tous les changements notables apportés à ce projet seront documentés dans ce fichier.
 
-<a name="version">8.0.0</a>
-
 ## [Unreleased]
 
 * Intégration plus propre de Jacoco.
 * Intégration plus propre de SonarCloud.
 
-## [Version](Link) (2020-mm-jj)
+## [8.0.0] - 2020-mm-jj
 
 Download at TODO
 
@@ -44,3 +42,7 @@ Download at TODO
 ### Dependencies
 
 *
+
+[Unreleased]: https://github.com/bdelion/java-parent/compare/8.0.0...HEAD
+[8.0.1]: https://github.com/bdelion/java-parent/compare/8.0.1...8.0.0
+[8.0.0]: https://github.com/bdelion/java-parent/releases/tag/8.0.0
