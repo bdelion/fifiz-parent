@@ -76,6 +76,8 @@
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+        <maven-project-info-reports-plugin>2.9</maven-project-info-reports-plugin>
+        <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
         <!-- Info référentiel Git -->
         <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
         <!-- Tests -->
@@ -144,6 +146,8 @@
                 <artifactId>git-commit-id-plugin</artifactId>
                 <version>${git-commit-id-plugin.version}</version>
                 <configuration>
+                    <!-- Skips if the value of maven.main.skip property is true  -->
+                    <skip>${maven.main.skip}</skip>
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                     <format>json</format>
                     <failOnNoGitDirectory>false</failOnNoGitDirectory>
@@ -184,6 +188,8 @@
                             <goal>prepare-agent</goal>
                         </goals>
                         <configuration>
+                            <!-- Skips unit tests if the value of unit.test.skip property is true -->
+                            <skip>${unit.test.skip}</skip>
                             <!-- Sets the path to the file which contains the execution data. -->
                             <destFile>${jacoco.utReportPath}</destFile>
                             <dataFile>${jacoco.utReportPath}</dataFile>
@@ -199,6 +205,8 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
+                            <!-- Skips unit tests if the value of unit.test.skip property is true -->
+                            <skip>${unit.test.skip}</skip>
                             <!-- Sets the path to the file which contains the execution data. -->
                             <dataFile>${jacoco.utReportPath}</dataFile>
                             <!-- Sets the output directory for the code coverage report. -->
@@ -214,6 +222,8 @@
                             <goal>prepare-agent-integration</goal>
                         </goals>
                         <configuration>
+                            <!-- Skips unit tests if the value of integration.test.skip property is true -->
+                            <skip>${integration.test.skip}</skip>
                             <!-- Sets the path to the file which contains the execution data. -->
                             <destFile>${jacoco.itReportPath}</destFile>
                             <dataFile>${jacoco.itReportPath}</dataFile>
@@ -229,6 +239,8 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
+                            <!-- Skips unit tests if the value of integration.test.skip property is true -->
+                            <skip>${integration.test.skip}</skip>
                             <!-- Sets the path to the file which contains the execution data. -->
                             <dataFile>${jacoco.itReportPath}</dataFile>
                             <!-- Sets the output directory for the code coverage report. -->
@@ -247,8 +259,8 @@
                     <runOrder>alphabetical</runOrder>
                     <!-- Sets the VM argument line used when unit tests are run. -->
                     <argLine>${surefireArgLine}</argLine>
-                    <!-- Skips unit tests if the value of skip.unit.tests property is true -->
-                    <skipTests>${skip.unit.tests}</skipTests>
+                    <!-- Skips unit tests if the value of unit.test.skip property is true -->
+                    <skip>${unit.test.skip}</skip>
                     <!-- Excludes integration tests when unit tests are run. -->
                     <excludes>
                         <exclude>**/IT*.java</exclude>
@@ -262,6 +274,8 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <runOrder>alphabetical</runOrder>
+                    <!-- Skips unit tests if the value of integration.test.skip property is true -->
+                    <skip>${integration.test.skip}</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -333,6 +347,21 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Pour générer le site -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.version}</version>
+                <configuration>
+                    <!-- Je veux le site en français -->
+                    <locales>fr</locales>
+                </configuration>
+            </plugin>
             <!-- Pour debug -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -349,6 +378,14 @@
                                 <echo>Displaying value of pom.xml element</echo>
                                 <echo>[distributionManagement.repository.name] ${project.distributionManagement.repository.name}</echo>
                                 <echo>[distributionManagement.repository.url] ${project.distributionManagement.repository.url}</echo>
+                                <echo>[maven.main.skip] ${maven.main.skip}</echo>
+                                <echo>[skipMain] ${skipMain}</echo>
+                                <echo>[maven.test.skip] ${maven.test.skip}</echo>
+                                <echo>[unit.test.skip] ${unit.test.skip}</echo>
+                                <echo>[integration.test.skip] ${unit.test.skip}</echo>
+                                <echo>[skipTests] ${skipTests}</echo>
+                                <echo>[skip.unit.tests] ${skip.unit.tests}</echo>
+                                <echo>[maven-assembly-plugin-skip] ${maven-assembly-plugin-skip}</echo>
                             </tasks>
                         </configuration>
                     </execution>
