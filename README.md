@@ -5,7 +5,7 @@
 [![HitCount](http://hits.dwyl.com/bdelion/java-parent.svg)](http://hits.dwyl.com/bdelion/java-parent) [![Version](https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000)](https://img.shields.io/badge/version-0.0.1-SNAPSHOT-blue.svg?cacheSeconds=2592000) [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/bdelion/java-parent/wiki)
 
 <p>
-<a href="https://sourcerer.io/bdelion"><img src="https://sourcerer.io/icons/logo-sharing.svg"height="24px" alt="Sourcerer"></a>
+<a href="https://sourcerer.io/bdelion"><img src="https://sourcerer.io/icons/logo-sharing.svg" height="24px" alt="Sourcerer"></a> <a href="https://www.gitmemory.com/bdelion"><img src="https://www.gitmemory.com/images/logo.png" height="24px" alt="gitMemory"></a>
 </p>
 
 > `java-parent` est un pom qui permet de gérer pour mes dév Java Training :
