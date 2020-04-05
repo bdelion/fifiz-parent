@@ -1,7 +1,7 @@
 # Changelog
 
-> NOTE : Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
-et ce projet adhère à [Semantic Versioning](https://semver.org/lang/fr/).
+> NOTE : Le format est basé sur [Keep a Changelog],
+et ce projet adhère à [Semantic Versioning].
 
 Tous les changements notables apportés à ce projet seront documentés dans ce fichier.
 
@@ -43,6 +43,8 @@ Download at TODO
 
 *
 
+[Keep a Changelog]: https://keepachangelog.com/fr/1.0.0/
+[Semantic Versioning]: https://semver.org/lang/fr/
 [Unreleased]: https://github.com/bdelion/java-parent/compare/8.0.0...HEAD
 [8.0.1]: https://github.com/bdelion/java-parent/compare/8.0.1...8.0.0
 [8.0.0]: https://github.com/bdelion/java-parent/releases/tag/8.0.0
