@@ -63,10 +63,9 @@
     <properties>
         <!-- Java version -->
         <java.version>1.8</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- Maven version -->
+        <maven.version>3.6.3</maven.version>
         <!-- Plugins version -->
         <!-- Plugin pour les contrôles -->
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
@@ -80,8 +79,18 @@
         <!-- Plugin pour les projets Java -->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <!-- BEGIN - maven.compiler properties -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.optimize>true</maven.compiler.optimize>
+        <maven.compiler.debug>true</maven.compiler.debug>
+        <maven.compiler.showDeprecation>false</maven.compiler.showDeprecation>
+        <maven.compiler.showWarnings>false</maven.compiler.showWarnings>
+        <!-- END - maven.compiler properties -->
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-project-info-reports-plugin>3.0.0</maven-project-info-reports-plugin>
         <!-- Info référentiel Git -->
@@ -135,6 +144,7 @@
                     <artifactId>git-commit-id-plugin</artifactId>
                     <version>${git-commit-id-plugin.version}</version>
                     <configuration>
+                        <useNativeGit>true</useNativeGit>
                         <!-- Skips if the value of maven.main.skip property is true  -->
                         <skip>${maven.main.skip}</skip>
                         <commitIdGenerationMode>full</commitIdGenerationMode>
@@ -233,7 +243,7 @@
                                 <destFile>${jacoco.itReportPath}</destFile>
                                 <dataFile>${jacoco.itReportPath}</dataFile>
                                 <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
-                                <propertyName>surefireArgLine</propertyName>
+                                <propertyName>failsafeArgLine</propertyName>
                             </configuration>
                         </execution>
                         <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
@@ -241,7 +251,7 @@
                             <id>post-integration-test</id>
                             <phase>post-integration-test</phase>
                             <goals>
-                                <goal>report</goal>
+                                <goal>report-integration</goal>
                             </goals>
                             <configuration>
                                 <!-- Skips unit tests if the value of integration.test.skip property is true -->
@@ -250,6 +260,35 @@
                                 <dataFile>${jacoco.itReportPath}</dataFile>
                                 <!-- Sets the output directory for the code coverage report. -->
                                 <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>merge-unit-and-integration</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>merge</goal>
+                            </goals>
+                            <configuration>
+                                <fileSets>
+                                    <fileSet>
+                                        <directory>${project.build.directory}/coverage-reports/</directory>
+                                        <includes>
+                                            <include>*.exec</include>
+                                        </includes>
+                                    </fileSet>
+                                </fileSets>
+                                <destFile>${project.build.directory}/coverage-reports/merged.exec</destFile>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>create-merged-report</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>report-aggregate</goal>
+                            </goals>
+                            <configuration>
+                                <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
+                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
                             </configuration>
                         </execution>
                     </executions>
@@ -269,7 +308,7 @@
                         <skip>${unit.test.skip}</skip>
                         <!-- Excludes integration tests when unit tests are run. -->
                         <excludes>
-                            <exclude>**/IT*.java</exclude>
+                            <exclude>**/*IT.*</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -278,6 +317,21 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven-jar-plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Specification-Title>${project.name}</Specification-Title>
+                                <Specification-Version>${project.version}</Specification-Version>
+                                <Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
+                                <Implementation-Build-Time>${maven.build.timestamp}</Implementation-Build-Time>
+                                <X-Git-SHA-1>${git.commit.id.abbrev}</X-Git-SHA-1>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
                 </plugin>
                 <!-- Exécution des TI avec Failsafe -->
                 <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
@@ -287,8 +341,13 @@
                     <version>${maven-failsafe-plugin.version}</version>
                     <configuration>
                         <runOrder>alphabetical</runOrder>
+                        <!-- Sets the VM argument line used when integration tests are run. -->
+                        <argLine>${failsafeArgLine}</argLine>
                         <!-- Skips unit tests if the value of integration.test.skip property is true -->
                         <skip>${integration.test.skip}</skip>
+                        <includes>
+                            <include>**/*IT.*</include>
+                        </includes>
                     </configuration>
                     <executions>
                         <execution>
@@ -300,7 +359,7 @@
                         </execution>
                         <!-- to exit in error on test fail -->
                         <execution>
-                            <id>verify</id>
+                            <id>verify-integration-tests</id>
                             <phase>verify</phase>
                             <goals>
                                 <goal>verify</goal>
@@ -325,7 +384,16 @@
                         <archive>
                             <manifest>
                                 <mainClass>${main-class}</mainClass>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             </manifest>
+                            <manifestEntries>
+                                <Specification-Title>${project.name}</Specification-Title>
+                                <Specification-Version>${project.version}</Specification-Version>
+                                <Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
+                                <Implementation-Build-Time>${maven.build.timestamp}</Implementation-Build-Time>
+                                <X-Git-SHA-1>${git.commit.id.abbrev}</X-Git-SHA-1>
+                            </manifestEntries>
                         </archive>
                     </configuration>
                     <executions>
@@ -335,6 +403,21 @@
                             <phase>package</phase>
                             <goals>
                                 <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- The Maven Source Plugin creates a JAR archive of the source files of the current project. -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -388,6 +471,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
             </plugin>
+            <!-- The Maven Source Plugin creates a JAR archive of the source files of the current project. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
             <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -428,6 +516,65 @@
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <id>jacoco-report</id>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                        <configuration>
+                          <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                        </configuration>
+                    </reportSet>
+                    <reportSet>
+                        <id>jacoco-report-integration</id>
+                        <reports>
+                            <report>report-integration</report>
+                        </reports>
+                        <configuration>
+                          <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                        </configuration>
+                    </reportSet>
+                    <reportSet>
+                        <id>jacoco-report-aggregate</id>
+                        <reports>
+                            <report>report-aggregate</report>
+                        </reports>
+                        <configuration>
+                          <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
+                        </configuration>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <id>unit-tests</id>
+                        <reports>
+                            <report>report-only</report>
+                        </reports>
+                    </reportSet>
+                    <reportSet>
+                        <id>integration-tests</id>
+                        <reports>
+                            <report>failsafe-report-only</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <profiles>
         <profile>
             <id>project-controls-check</id>
@@ -448,8 +595,11 @@
                                 <configuration>
                                     <rules>
                                         <requireMavenVersion>
-                                            <version>3.6.3</version>
+                                            <version>${maven.version}</version>
                                         </requireMavenVersion>
+                                        <requireJavaVersion>
+                                            <version>${java.version}</version>
+                                        </requireJavaVersion>
                                         <requirePluginVersions>
                                             <message>Définissez plugin.version !</message>
                                         </requirePluginVersions>
@@ -458,7 +608,7 @@
                                         </banDuplicatePomDependencyVersions>
                                         <bannedDependencies>
                                             <searchTransitive>true</searchTransitive>
-                                            <excludes>
+                                            <!-- <excludes>
                                                 <exclude>commons-logging:commons-logging</exclude>
                                                 <exclude>log4j:log4j</exclude>
                                                 <exclude>org.apache.httpcomponents:httpclient:(4.3]</exclude>
@@ -466,10 +616,22 @@
                                             </excludes>
                                             <includes>
                                                 <include>org.mockito:mockito-all:*:*:test</include>
-                                            </includes>
+                                            </includes> -->
                                             <message>A banned dependency or plugin was found!</message>
                                         </bannedDependencies>
                                         <dependencyConvergence />
+                                        <requireReleaseDeps>
+                                            <message>No Snapshots Allowed in releases!</message>
+                                            <onlyWhenRelease>true</onlyWhenRelease>
+                                        </requireReleaseDeps>
+                                        <requireUpperBoundDeps>
+                                            <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
+                                            <!-- <uniqueVersions>true</uniqueVersions> -->
+                                            <!-- If you wish to ignore certain cases:
+                                            <excludes>
+                                                <exclude>com.google.guava:guava</exclude>
+                                            </excludes> -->
+                                        </requireUpperBoundDeps>
                                     </rules>
                                     <skip>${maven.main.skip}</skip>
                                 </configuration>
