@@ -371,101 +371,6 @@
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>${maven-clean-plugin.version}</version>
             </plugin>
-            <!-- The Enforcer plugin provides goals to control certain environmental constraints such as Maven version,
-                 JDK version and OS family along with many more built-in rules and user created rules. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-rules-controls</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.6.3</version>
-                                </requireMavenVersion>
-                                <requirePluginVersions>
-                                    <message>Définissez plugin.version !</message>
-                                </requirePluginVersions>
-                                <banDuplicatePomDependencyVersions>
-                                    <message>enforces that the project doesn't have duplicate declared dependencies.</message>
-                                </banDuplicatePomDependencyVersions>
-                                <bannedDependencies>
-                                    <searchTransitive>true</searchTransitive>
-                                    <excludes>
-                                        <exclude>commons-logging:commons-logging</exclude>
-                                        <exclude>log4j:log4j</exclude>
-                                        <exclude>org.apache.httpcomponents:httpclient:(4.3]</exclude>
-                                        <exclude>org.mockito:mockito-all</exclude>
-                                    </excludes>
-                                    <includes>
-                                        <include>org.mockito:mockito-all:*:*:test</include>
-                                    </includes>
-                                    <message>A banned dependency or plugin was found!</message>
-                                </bannedDependencies>
-                                <dependencyConvergence />
-                            </rules>
-                            <skip>${maven.main.skip}</skip>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>enforce-display-info</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>display-info</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- The Versions Plugin is used when you want to manage the versions of artifacts in a project's POM. -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>${versions-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>display-plugin-updates</goal>
-                            <goal>display-dependency-updates</goal>
-                            <goal>display-property-updates</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Runs Ant scripts embedded in the POM -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>${maven-antrun-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo>Displaying value of pom.xml element</echo>
-                                <echo>[distributionManagement.repository.name] ${project.distributionManagement.repository.name}</echo>
-                                <echo>[distributionManagement.repository.url] ${project.distributionManagement.repository.url}</echo>
-                                <echo>[maven.main.skip] ${maven.main.skip}</echo>
-                                <echo>[skipMain] ${skipMain}</echo>
-                                <echo>[maven.test.skip] ${maven.test.skip}</echo>
-                                <echo>[unit.test.skip] ${unit.test.skip}</echo>
-                                <echo>[integration.test.skip] ${unit.test.skip}</echo>
-                                <echo>[skipTests] ${skipTests}</echo>
-                                <echo>[skip.unit.tests] ${skip.unit.tests}</echo>
-                                <echo>[maven-assembly-plugin-skip] ${maven-assembly-plugin-skip}</echo>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- This plugin makes basic repository information available through maven resources. -->
             <plugin>
                 <groupId>pl.project13.maven</groupId>
@@ -523,4 +428,108 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>project-controls-check</id>
+            <build>
+                <plugins>
+                    <!-- The Enforcer plugin provides goals to control certain environmental constraints such as Maven version,
+                 JDK version and OS family along with many more built-in rules and user created rules. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>${maven-enforcer-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>enforce-rules-controls</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireMavenVersion>
+                                            <version>3.6.3</version>
+                                        </requireMavenVersion>
+                                        <requirePluginVersions>
+                                            <message>Définissez plugin.version !</message>
+                                        </requirePluginVersions>
+                                        <banDuplicatePomDependencyVersions>
+                                            <message>enforces that the project doesn't have duplicate declared dependencies.</message>
+                                        </banDuplicatePomDependencyVersions>
+                                        <bannedDependencies>
+                                            <searchTransitive>true</searchTransitive>
+                                            <excludes>
+                                                <exclude>commons-logging:commons-logging</exclude>
+                                                <exclude>log4j:log4j</exclude>
+                                                <exclude>org.apache.httpcomponents:httpclient:(4.3]</exclude>
+                                                <exclude>org.mockito:mockito-all</exclude>
+                                            </excludes>
+                                            <includes>
+                                                <include>org.mockito:mockito-all:*:*:test</include>
+                                            </includes>
+                                            <message>A banned dependency or plugin was found!</message>
+                                        </bannedDependencies>
+                                        <dependencyConvergence />
+                                    </rules>
+                                    <skip>${maven.main.skip}</skip>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>enforce-display-info</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>display-info</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- The Versions Plugin is used when you want to manage the versions of artifacts in a project's POM. -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>versions-maven-plugin</artifactId>
+                        <version>${versions-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>display-plugin-updates</goal>
+                                    <goal>display-dependency-updates</goal>
+                                    <goal>display-property-updates</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Runs Ant scripts embedded in the POM -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>${maven-antrun-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo>Displaying value of pom.xml element</echo>
+                                        <echo>[distributionManagement.repository.name] ${project.distributionManagement.repository.name}</echo>
+                                        <echo>[distributionManagement.repository.url] ${project.distributionManagement.repository.url}</echo>
+                                        <echo>[maven.main.skip] ${maven.main.skip}</echo>
+                                        <echo>[skipMain] ${skipMain}</echo>
+                                        <echo>[maven.test.skip] ${maven.test.skip}</echo>
+                                        <echo>[unit.test.skip] ${unit.test.skip}</echo>
+                                        <echo>[integration.test.skip] ${unit.test.skip}</echo>
+                                        <echo>[skipTests] ${skipTests}</echo>
+                                        <echo>[skip.unit.tests] ${skip.unit.tests}</echo>
+                                        <echo>[maven-assembly-plugin-skip] ${maven-assembly-plugin-skip}</echo>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
