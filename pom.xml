@@ -438,6 +438,7 @@
                                 <!-- <ignoreNonCompile>true</ignoreNonCompile> -->
                                 <ignoredUnusedDeclaredDependencies>
                                     <ignoredUnusedDeclaredDependency>org.junit.jupiter:junit-jupiter-*::</ignoredUnusedDeclaredDependency>
+                                    <ignoredUnusedDeclaredDependency>org.apache.logging.log4j:log4j-core::</ignoredUnusedDeclaredDependency>
                                 </ignoredUnusedDeclaredDependencies>
                                 <outputXML>true</outputXML>
                             </configuration>
