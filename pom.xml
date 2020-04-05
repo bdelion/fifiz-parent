@@ -59,7 +59,6 @@
             </roles>
         </developer>
     </developers>
-    <!-- mvn deploy -Dregistry=https://maven.pkg.github.com/bdelion -Dtoken=a719eb50ee05ca3fb5ea7249cefd3eae9f4a087e -->
 
     <properties>
         <!-- Java version -->
@@ -71,6 +70,7 @@
         <!-- Plugins version -->
         <!-- Plugin pour les contrôles -->
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+        <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
         <!-- Plugin pour le debug -->
         <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
         <!-- Plugin pour le pom parent -->
@@ -83,12 +83,11 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
-        <maven-project-info-reports-plugin>2.9</maven-project-info-reports-plugin>
-        <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
+        <maven-project-info-reports-plugin>3.0.0</maven-project-info-reports-plugin>
         <!-- Info référentiel Git -->
         <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
         <!-- Tests -->
-        <junit.version>5.6.0</junit.version>
+        <junit.version>5.6.1</junit.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
@@ -372,24 +371,69 @@
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>${maven-clean-plugin.version}</version>
             </plugin>
-            <!-- Contrôle des déclarations de version des plugins -->
+            <!-- The Enforcer plugin provides goals to control certain environmental constraints such as Maven version,
+                 JDK version and OS family along with many more built-in rules and user created rules. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>${maven-enforcer-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>enforce-versions</id>
+                        <id>enforce-rules-controls</id>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
                         <configuration>
                             <rules>
+                                <requireMavenVersion>
+                                    <version>3.6.3</version>
+                                </requireMavenVersion>
                                 <requirePluginVersions>
                                     <message>Définissez plugin.version !</message>
                                 </requirePluginVersions>
+                                <banDuplicatePomDependencyVersions>
+                                    <message>enforces that the project doesn't have duplicate declared dependencies.</message>
+                                </banDuplicatePomDependencyVersions>
+                                <bannedDependencies>
+                                    <searchTransitive>true</searchTransitive>
+                                    <excludes>
+                                        <exclude>commons-logging:commons-logging</exclude>
+                                        <exclude>log4j:log4j</exclude>
+                                        <exclude>org.apache.httpcomponents:httpclient:(4.3]</exclude>
+                                        <exclude>org.mockito:mockito-all</exclude>
+                                    </excludes>
+                                    <includes>
+                                        <include>org.mockito:mockito-all:*:*:test</include>
+                                    </includes>
+                                    <message>A banned dependency or plugin was found!</message>
+                                </bannedDependencies>
+                                <dependencyConvergence />
                             </rules>
+                            <skip>${maven.main.skip}</skip>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>enforce-display-info</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>display-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- The Versions Plugin is used when you want to manage the versions of artifacts in a project's POM. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>display-plugin-updates</goal>
+                            <goal>display-dependency-updates</goal>
+                            <goal>display-property-updates</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
