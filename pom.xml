@@ -21,6 +21,22 @@
         <url>https://bdelion.github.io/</url>
     </organization>
 
+    <developers>
+        <developer>
+            <id>bdelion</id>
+            <name>Bertrand Delion</name>
+            <email>bertrand.delion@free.fr</email>
+            <url>https://github.com/bdelion</url>
+            <organization>FIFIZ Company</organization>
+            <organizationUrl>https://github.com/bdelion</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <!-- Gestionnaire de code source -->
     <!-- https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
     <scm>
@@ -37,28 +53,34 @@
         <system>GitHub Actions</system>
         <url>https://github.com/bdelion/java-parent/actions</url>
     </ciManagement>
+
     <distributionManagement>
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub Snapshot bdelion/maven-packages Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/bdelion/maven-packages</url>
+            <!-- <uniqueVersion>true</uniqueVersion> -->
+        </snapshotRepository>
         <repository>
             <id>github</id>
-            <name>GitHub bdelion/${project.artifactId} Apache Maven Packages</name>
+            <name>GitHub Release bdelion/maven-packages Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
+            <!-- <uniqueVersion>false</uniqueVersion> -->
         </repository>
     </distributionManagement>
-    <developers>
-        <developer>
-            <id>bdelion</id>
-            <name>Bertrand Delion</name>
-            <email>bertrand.delion@free.fr</email>
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub bdelion/maven-packages Apache Maven Packages</name>
             <url>https://github.com/bdelion</url>
-            <organization>FIFIZ Company</organization>
-            <organizationUrl>https://github.com/bdelion</organizationUrl>
-            <timezone>+1</timezone>
-            <roles>
-                <role>Architect</role>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <properties>
         <!-- Java version -->
@@ -438,6 +460,7 @@
                                 <!-- <ignoreNonCompile>true</ignoreNonCompile> -->
                                 <ignoredUnusedDeclaredDependencies>
                                     <ignoredUnusedDeclaredDependency>org.junit.jupiter:junit-jupiter-*::</ignoredUnusedDeclaredDependency>
+                                    <ignoredUnusedDeclaredDependency>org.apache.logging.log4j:log4j-core::</ignoredUnusedDeclaredDependency>
                                 </ignoredUnusedDeclaredDependencies>
                                 <outputXML>true</outputXML>
                             </configuration>
@@ -530,7 +553,7 @@
                             <report>report</report>
                         </reports>
                         <configuration>
-                          <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
                         </configuration>
                     </reportSet>
                     <reportSet>
@@ -539,7 +562,7 @@
                             <report>report-integration</report>
                         </reports>
                         <configuration>
-                          <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
                         </configuration>
                     </reportSet>
                     <reportSet>
@@ -548,7 +571,7 @@
                             <report>report-aggregate</report>
                         </reports>
                         <configuration>
-                          <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
+                            <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
                         </configuration>
                     </reportSet>
                 </reportSets>

@@ -7,8 +7,10 @@ Tous les changements notables apportés à ce projet seront documentés dans ce 
 
 ## [Unreleased]
 
-* Intégration plus propre de Jacoco.
-* Intégration plus propre de SonarCloud.
+> ## [8.1.0] - 2020-mm-jj
+> 
+> * Intégration plus propre de Jacoco.
+> * Intégration plus propre de SonarCloud.
 
 ## [8.0.0] - 2020-mm-jj
 
