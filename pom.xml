@@ -64,7 +64,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Release bdelion/maven-packages Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/bdelion/maven-packages</url>
+            <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
             <!-- <uniqueVersion>false</uniqueVersion> -->
         </repository>
     </distributionManagement>
@@ -72,7 +72,7 @@
         <repository>
             <id>github</id>
             <name>GitHub bdelion/maven-packages Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/bdelion/maven-packages</url>
+            <url>https://github.com/bdelion</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
