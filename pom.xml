@@ -60,13 +60,13 @@
             <id>github</id>
             <name>GitHub Snapshot bdelion/maven-packages Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/bdelion/maven-packages</url>
-            <!-- <uniqueVersion>true</uniqueVersion> -->
+            <!-- TODEL <uniqueVersion>true</uniqueVersion> -->
         </snapshotRepository>
         <repository>
             <id>github</id>
             <name>GitHub Release bdelion/maven-packages Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
-            <!-- <uniqueVersion>false</uniqueVersion> -->
+            <!-- TODEL <uniqueVersion>false</uniqueVersion> -->
         </repository>
     </distributionManagement>
     <repositories>
@@ -114,12 +114,13 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-project-info-reports-plugin>3.0.0</maven-project-info-reports-plugin>
         <!-- Info référentiel Git -->
         <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
         <!-- Tests -->
-        <junit.version>5.6.1</junit.version>
+        <junit.version>5.6.2</junit.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
@@ -260,8 +261,8 @@
                                 <goal>prepare-agent-integration</goal>
                             </goals>
                             <configuration>
-                                <!-- Skips unit tests if the value of integration.test.skip property is true -->
-                                <skip>${integration.test.skip}</skip>
+                                <!-- Skips unit tests if the value of verify.skip property is true -->
+                                <skip>${verify.skip}</skip>
                                 <!-- Sets the path to the file which contains the execution data. -->
                                 <destFile>${jacoco.itReportPath}</destFile>
                                 <dataFile>${jacoco.itReportPath}</dataFile>
@@ -277,8 +278,8 @@
                                 <goal>report-integration</goal>
                             </goals>
                             <configuration>
-                                <!-- Skips unit tests if the value of integration.test.skip property is true -->
-                                <skip>${integration.test.skip}</skip>
+                                <!-- Skips unit tests if the value of verify.skip property is true -->
+                                <skip>${verify.skip}</skip>
                                 <!-- Sets the path to the file which contains the execution data. -->
                                 <dataFile>${jacoco.itReportPath}</dataFile>
                                 <!-- Sets the output directory for the code coverage report. -->
@@ -366,8 +367,8 @@
                         <runOrder>alphabetical</runOrder>
                         <!-- Sets the VM argument line used when integration tests are run. -->
                         <argLine>${failsafeArgLine}</argLine>
-                        <!-- Skips unit tests if the value of integration.test.skip property is true -->
-                        <skip>${integration.test.skip}</skip>
+                        <!-- Skips unit tests if the value of verify.skip property is true -->
+                        <skip>${verify.skip}</skip>
                         <includes>
                             <include>**/*IT.*</include>
                         </includes>
@@ -438,9 +439,22 @@
                     <executions>
                         <execution>
                             <id>attach-sources</id>
-                            <phase>package</phase>
                             <goals>
                                 <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- The Apache Maven Javadoc Plugin is a plugin that uses the javadoc tool for generating javadocs for the specified project. -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -493,11 +507,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-            </plugin>
-            <!-- The Maven Source Plugin creates a JAR archive of the source files of the current project. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
             </plugin>
             <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
             <plugin>
@@ -681,35 +690,6 @@
                                     <goal>display-dependency-updates</goal>
                                     <goal>display-property-updates</goal>
                                 </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- Runs Ant scripts embedded in the POM -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>${maven-antrun-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <echo>Displaying value of pom.xml element</echo>
-                                        <echo>[distributionManagement.repository.name] ${project.distributionManagement.repository.name}</echo>
-                                        <echo>[distributionManagement.repository.url] ${project.distributionManagement.repository.url}</echo>
-                                        <echo>[maven.main.skip] ${maven.main.skip}</echo>
-                                        <echo>[skipMain] ${skipMain}</echo>
-                                        <echo>[maven.test.skip] ${maven.test.skip}</echo>
-                                        <echo>[unit.test.skip] ${unit.test.skip}</echo>
-                                        <echo>[integration.test.skip] ${unit.test.skip}</echo>
-                                        <echo>[skipTests] ${skipTests}</echo>
-                                        <echo>[skip.unit.tests] ${skip.unit.tests}</echo>
-                                        <echo>[maven-assembly-plugin-skip] ${maven-assembly-plugin-skip}</echo>
-                                    </target>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
