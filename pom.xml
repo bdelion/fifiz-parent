@@ -341,6 +341,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven-jar-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>default-jar</id>
+                            <phase>none</phase>
+                        </execution>
+                    </executions>
                     <configuration>
                         <archive>
                             <manifest>
@@ -500,13 +506,6 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
-            <!-- A Maven plugin to create archives of your project's sources, classes, dependencies etc.
-                     from flexible assembly descriptors. -->
-            <!-- Goal qui construit un fichier JAR (Java Archive) executable à partir des ressources et des classes de projet compilées. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
             </plugin>
             <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
             <plugin>
