@@ -133,6 +133,7 @@
         <maven-assembly-plugin-skip>true</maven-assembly-plugin-skip>
         <!-- Site and Report generation -->
         <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
+        <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -551,6 +552,11 @@
     <reporting>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${maven-jxr-plugin.version}</version>
+            </plugin>
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco-maven-plugin.version}</version>
@@ -599,6 +605,18 @@
                         <id>integration-tests</id>
                         <reports>
                             <report>failsafe-report-only</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>javadoc-no-fork</report>
                         </reports>
                     </reportSet>
                 </reportSets>
