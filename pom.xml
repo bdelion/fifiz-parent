@@ -57,16 +57,14 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>github</id>
+            <id>github-snapshot</id>
             <name>GitHub Snapshot bdelion/maven-packages Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/bdelion/maven-packages</url>
-            <!-- TODEL <uniqueVersion>true</uniqueVersion> -->
         </snapshotRepository>
         <repository>
-            <id>github</id>
+            <id>github-release</id>
             <name>GitHub Release bdelion/maven-packages Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
-            <!-- TODEL <uniqueVersion>false</uniqueVersion> -->
         </repository>
     </distributionManagement>
     <repositories>
