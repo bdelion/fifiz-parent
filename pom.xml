@@ -1,663 +1,663 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <!-- Version du fichier -->
-    <modelVersion>4.0.0</modelVersion>
+  <!-- Version du fichier -->
+  <modelVersion>4.0.0</modelVersion>
 
-    <!-- Pom parent -->
+  <!-- Pom parent -->
 
-    <!-- Definition de l'artefact -->
-    <groupId>fr.fifiz.socle.java</groupId>
-    <artifactId>java-parent</artifactId>
-    <version>8.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>FIFIZ :: Socle Java :: java-parent</name>
-    <description>Pom parent Java de mes projets </description>
+  <!-- Definition de l'artefact -->
+  <groupId>fr.fifiz.socle.java</groupId>
+  <artifactId>java-parent</artifactId>
+  <version>8.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>FIFIZ :: Socle Java :: java-parent</name>
+  <description>Pom parent Java de mes projets </description>
 
-    <!-- FIXME change it to the project's website -->
-    <url>https://bdelion.github.io/java-parent/</url>
-    <!-- FIXME add licences -->
+  <!-- FIXME change it to the project's website -->
+  <url>https://bdelion.github.io/java-parent/</url>
+  <!-- FIXME add licences -->
 
-    <organization>
-        <name>FIFIZ Company</name>
-        <url>https://bdelion.github.io/</url>
-    </organization>
+  <organization>
+    <name>FIFIZ Company</name>
+    <url>https://bdelion.github.io/</url>
+  </organization>
 
-    <developers>
-        <developer>
-            <id>bdelion</id>
-            <name>Bertrand Delion</name>
-            <email>bertrand.delion@free.fr</email>
-            <url>https://github.com/bdelion</url>
-            <organization>FIFIZ Company</organization>
-            <organizationUrl>https://github.com/bdelion</organizationUrl>
-            <timezone>+1</timezone>
-            <roles>
-                <role>Architect</role>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
+  <developers>
+    <developer>
+      <id>bdelion</id>
+      <name>Bertrand Delion</name>
+      <email>bertrand.delion@free.fr</email>
+      <url>https://github.com/bdelion</url>
+      <organization>FIFIZ Company</organization>
+      <organizationUrl>https://github.com/bdelion</organizationUrl>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Architect</role>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
 
-    <!-- Gestionnaire de code source -->
-    <!-- https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
-    <scm>
-        <url>https://github.com/bdelion/java-parent</url>
-        <connection>scm:git:git://github.com/bdelion/java-parent.git</connection>
-        <developerConnection>scm:git:git@github.com:bdelion/java-parent.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-    <issueManagement>
-        <url>https://github.com/bdelion/java-parent/issues</url>
-        <system>GitHub Issues</system>
-    </issueManagement>
-    <ciManagement>
-        <system>GitHub Actions</system>
-        <url>https://github.com/bdelion/java-parent/actions</url>
-    </ciManagement>
+  <!-- Gestionnaire de code source -->
+  <!-- https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
+  <scm>
+    <url>https://github.com/bdelion/java-parent</url>
+    <connection>scm:git:git://github.com/bdelion/java-parent.git</connection>
+    <developerConnection>scm:git:git@github.com:bdelion/java-parent.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <url>https://github.com/bdelion/java-parent/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+  <ciManagement>
+    <system>GitHub Actions</system>
+    <url>https://github.com/bdelion/java-parent/actions</url>
+  </ciManagement>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>github</id>
-            <name>GitHub Snapshot bdelion/maven-packages Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/bdelion/maven-packages</url>
-            <!-- TODEL <uniqueVersion>true</uniqueVersion> -->
-        </snapshotRepository>
-        <repository>
-            <id>github</id>
-            <name>GitHub Release bdelion/maven-packages Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
-            <!-- TODEL <uniqueVersion>false</uniqueVersion> -->
-        </repository>
-    </distributionManagement>
-    <repositories>
-        <repository>
-            <id>github</id>
-            <name>GitHub bdelion/maven-packages Apache Maven Packages</name>
-            <url>https://github.com/bdelion</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>github</id>
+      <name>GitHub Snapshot bdelion/maven-packages Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/bdelion/maven-packages</url>
+      <!-- TODEL <uniqueVersion>true</uniqueVersion> -->
+    </snapshotRepository>
+    <repository>
+      <id>github</id>
+      <name>GitHub Release bdelion/maven-packages Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/bdelion/${project.artifactId}</url>
+      <!-- TODEL <uniqueVersion>false</uniqueVersion> -->
+    </repository>
+  </distributionManagement>
+  <repositories>
+    <repository>
+      <id>github</id>
+      <name>GitHub bdelion/maven-packages Apache Maven Packages</name>
+      <url>https://github.com/bdelion</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
-    <properties>
-        <!-- Java version -->
-        <java.version>1.8</java.version>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Maven version -->
-        <maven.version>3.6.3</maven.version>
-        <!-- Plugins version -->
-        <!-- Plugin pour les contrôles -->
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
-        <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
-        <!-- Plugin pour le debug -->
-        <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
-        <!-- Plugin pour le pom parent -->
-        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
-        <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
-        <!-- Plugin pour les projets Java -->
-        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <!-- BEGIN - maven.compiler properties -->
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.optimize>true</maven.compiler.optimize>
-        <maven.compiler.debug>true</maven.compiler.debug>
-        <maven.compiler.showDeprecation>false</maven.compiler.showDeprecation>
-        <maven.compiler.showWarnings>false</maven.compiler.showWarnings>
-        <!-- END - maven.compiler properties -->
-        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-        <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
-        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
-        <maven-project-info-reports-plugin>3.0.0</maven-project-info-reports-plugin>
-        <!-- Info référentiel Git -->
-        <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
-        <!-- Tests -->
-        <junit.version>5.6.2</junit.version>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
-        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-        <jacoco.utReportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.utReportPath>
-        <jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.itReportPath>
-        <!-- FIXME https://bcouetil.gitlab.io/academy/BP-maven.html#sonarqube-with-jacoco-for-coverage
+  <properties>
+    <!-- Java version -->
+    <java.version>1.8</java.version>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- Maven version -->
+    <maven.version>3.6.3</maven.version>
+    <!-- Plugins version -->
+    <!-- Plugin pour les contrôles -->
+    <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+    <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
+    <!-- Plugin pour le debug -->
+    <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+    <!-- Plugin pour le pom parent -->
+    <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+    <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+    <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+    <!-- Plugin pour les projets Java -->
+    <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <!-- BEGIN - maven.compiler properties -->
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.optimize>true</maven.compiler.optimize>
+    <maven.compiler.debug>true</maven.compiler.debug>
+    <maven.compiler.showDeprecation>false</maven.compiler.showDeprecation>
+    <maven.compiler.showWarnings>false</maven.compiler.showWarnings>
+    <!-- END - maven.compiler properties -->
+    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+    <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
+    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+    <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+    <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
+    <maven-project-info-reports-plugin>3.0.0</maven-project-info-reports-plugin>
+    <!-- Info référentiel Git -->
+    <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
+    <!-- Tests -->
+    <junit.version>5.6.2</junit.version>
+    <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+    <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
+    <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+    <jacoco.utReportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.utReportPath>
+    <jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.itReportPath>
+    <!-- FIXME https://bcouetil.gitlab.io/academy/BP-maven.html#sonarqube-with-jacoco-for-coverage
             <sonar.jacoco.reportPaths>${jacoco.utReportPath}, ${jacoco.itReportPath}</sonar.jacoco.reportPaths>
         -->
-        <!-- Assembly -->
-        <maven-assembly-plugin-skip>true</maven-assembly-plugin-skip>
-        <!-- Site and Report generation -->
-        <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
-        <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
-    </properties>
+    <!-- Assembly -->
+    <maven-assembly-plugin-skip>true</maven-assembly-plugin-skip>
+    <!-- Site and Report generation -->
+    <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
+    <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+  </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Pour les tests -->
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-engine</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+  <dependencyManagement>
+    <dependencies>
+      <!-- Pour les tests -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Plugin Maven qui inclut les informations du référentiel git au moment de la construction dans un POJO / * .properties -->
-                <!-- https://www.codeflow.site/fr/article/spring-git-information -->
-                <!-- This plugin makes basic repository information available through maven resources.
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Plugin Maven qui inclut les informations du référentiel git au moment de la construction dans un POJO / * .properties -->
+        <!-- https://www.codeflow.site/fr/article/spring-git-information -->
+        <!-- This plugin makes basic repository information available through maven resources.
                      This can be used to display "what version is this?" or "who has deployed this and when,
                      from which branch?" information at runtime, making it easy to find things like "oh, that isn't deployed yet,
                      I'll test it tomorrow" and making both testers and developers life easier.
                      See https://github.com/git-commit-id/maven-git-commit-id-plugin -->
-                <plugin>
-                    <groupId>pl.project13.maven</groupId>
-                    <artifactId>git-commit-id-plugin</artifactId>
-                    <version>${git-commit-id-plugin.version}</version>
-                    <configuration>
-                        <useNativeGit>true</useNativeGit>
-                        <!-- Skips if the value of maven.main.skip property is true  -->
-                        <skip>${maven.main.skip}</skip>
-                        <commitIdGenerationMode>full</commitIdGenerationMode>
-                        <format>json</format>
-                        <failOnNoGitDirectory>false</failOnNoGitDirectory>
-                        <verbose>false</verbose>
-                        <excludeProperties>
-                            <excludeProperty>git.build.host</excludeProperty>
-                            <excludeProperty>git.commit.id.abbrev</excludeProperty>
-                        </excludeProperties>
-                        <!-- this is false by default, forces the plugin to generate the git.properties file -->
-                        <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                        <!-- The path for the properties file to be generated. See Super Pom for default variable reference https://maven.apache.org/guides/introduction/introduction-to-the-pom.html -->
-                        <generateGitPropertiesFilename>${project.build.outputDirectory}/git-properties.json</generateGitPropertiesFilename>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>get-the-git-infos</id>
-                            <goals>
-                                <goal>revision</goal>
-                            </goals>
-                            <phase>initialize</phase>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- The Resources Plugin handles the copying of project resources to the output directory. 
-                    There are two different kinds of resources: main resources and test resources. 
-                    The difference is that the main resources are the resources associated to the main source code while the test resources are associated to the test source code. 
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <version>${git-commit-id-plugin.version}</version>
+          <configuration>
+            <useNativeGit>true</useNativeGit>
+            <!-- Skips if the value of maven.main.skip property is true  -->
+            <skip>${maven.main.skip}</skip>
+            <commitIdGenerationMode>full</commitIdGenerationMode>
+            <format>json</format>
+            <failOnNoGitDirectory>false</failOnNoGitDirectory>
+            <verbose>false</verbose>
+            <excludeProperties>
+              <excludeProperty>git.build.host</excludeProperty>
+              <excludeProperty>git.commit.id.abbrev</excludeProperty>
+            </excludeProperties>
+            <!-- this is false by default, forces the plugin to generate the git.properties file -->
+            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+            <!-- The path for the properties file to be generated. See Super Pom for default variable reference https://maven.apache.org/guides/introduction/introduction-to-the-pom.html -->
+            <generateGitPropertiesFilename>${project.build.outputDirectory}/git-properties.json</generateGitPropertiesFilename>
+          </configuration>
+          <executions>
+            <execution>
+              <id>get-the-git-infos</id>
+              <goals>
+                <goal>revision</goal>
+              </goals>
+              <phase>initialize</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- The Resources Plugin handles the copying of project resources to the output directory.
+                    There are two different kinds of resources: main resources and test resources.
+                    The difference is that the main resources are the resources associated to the main source code while the test resources are associated to the test source code.
                     Thus, this allows the separation of resources for the main source code and its unit tests. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven-resources-plugin.version}</version>
-                </plugin>
-                <!-- The Compiler Plugin is used to compile the sources of your project. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                </plugin>
-                <!-- Tests -->
-                <!-- Gestion des Tests avec Jacoco -->
-                <!-- You can run jacoco in the default profile with: mvn jacoco:prepare-agent test jacoco:report -->
-                <!-- The JaCoCo Maven Plugin provides the JaCoCo runtime agent to your tests and allows basic report creation. -->
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco-maven-plugin.version}</version>
-                    <executions>
-                        <!-- UNIT TESTS -->
-                        <!-- Prepares the property pointing to the JaCoCo runtime agent which is passed as VM argument when Maven the Surefire plugin is executed. -->
-                        <execution>
-                            <id>pre-unit-test</id>
-                            <phase>test-compile</phase>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                            <configuration>
-                                <!-- Skips unit tests if the value of unit.test.skip property is true -->
-                                <skip>${unit.test.skip}</skip>
-                                <!-- Sets the path to the file which contains the execution data. -->
-                                <destFile>${jacoco.utReportPath}</destFile>
-                                <dataFile>${jacoco.utReportPath}</dataFile>
-                                <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
-                                <propertyName>surefireArgLine</propertyName>
-                            </configuration>
-                        </execution>
-                        <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
-                        <execution>
-                            <id>post-unit-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                            <configuration>
-                                <!-- Skips unit tests if the value of unit.test.skip property is true -->
-                                <skip>${unit.test.skip}</skip>
-                                <!-- Sets the path to the file which contains the execution data. -->
-                                <dataFile>${jacoco.utReportPath}</dataFile>
-                                <!-- Sets the output directory for the code coverage report. -->
-                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-                            </configuration>
-                        </execution>
-                        <!-- INTEGRATION TESTS -->
-                        <!-- Prepares the property pointing to the JaCoCo runtime agent which is passed as VM argument when Maven the Surefire plugin is executed. -->
-                        <execution>
-                            <id>pre-integration-test</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                                <goal>prepare-agent-integration</goal>
-                            </goals>
-                            <configuration>
-                                <!-- Skips unit tests if the value of verify.skip property is true -->
-                                <skip>${verify.skip}</skip>
-                                <!-- Sets the path to the file which contains the execution data. -->
-                                <destFile>${jacoco.itReportPath}</destFile>
-                                <dataFile>${jacoco.itReportPath}</dataFile>
-                                <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
-                                <propertyName>failsafeArgLine</propertyName>
-                            </configuration>
-                        </execution>
-                        <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
-                        <execution>
-                            <id>post-integration-test</id>
-                            <phase>post-integration-test</phase>
-                            <goals>
-                                <goal>report-integration</goal>
-                            </goals>
-                            <configuration>
-                                <!-- Skips unit tests if the value of verify.skip property is true -->
-                                <skip>${verify.skip}</skip>
-                                <!-- Sets the path to the file which contains the execution data. -->
-                                <dataFile>${jacoco.itReportPath}</dataFile>
-                                <!-- Sets the output directory for the code coverage report. -->
-                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>merge-unit-and-integration</id>
-                            <phase>post-integration-test</phase>
-                            <goals>
-                                <goal>merge</goal>
-                            </goals>
-                            <configuration>
-                                <fileSets>
-                                    <fileSet>
-                                        <directory>${project.build.directory}/coverage-reports/</directory>
-                                        <includes>
-                                            <include>*.exec</include>
-                                        </includes>
-                                    </fileSet>
-                                </fileSets>
-                                <destFile>${project.build.directory}/coverage-reports/merged.exec</destFile>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>create-merged-report</id>
-                            <phase>post-integration-test</phase>
-                            <goals>
-                                <goal>report-aggregate</goal>
-                            </goals>
-                            <configuration>
-                                <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
-                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- Exécution des TU avec Surfire -->
-                <!-- Maven Surefire MOJO in maven-surefire-plugin. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                    <configuration>
-                        <testFailureIgnore>false</testFailureIgnore>
-                        <runOrder>alphabetical</runOrder>
-                        <!-- Sets the VM argument line used when unit tests are run. -->
-                        <argLine>${surefireArgLine}</argLine>
-                        <!-- Skips unit tests if the value of unit.test.skip property is true -->
-                        <skip>${unit.test.skip}</skip>
-                        <!-- Excludes integration tests when unit tests are run. -->
-                        <excludes>
-                            <exclude>**/*IT.*</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-                <!-- Builds a Java Archive (JAR) file from the compiled project classes and resources. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven-jar-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>default-jar</id>
-                            <phase>none</phase>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <Specification-Title>${project.name}</Specification-Title>
-                                <Specification-Version>${project.version}</Specification-Version>
-                                <Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
-                                <Implementation-Build-Time>${maven.build.timestamp}</Implementation-Build-Time>
-                                <X-Git-SHA-1>${git.commit.id.abbrev}</X-Git-SHA-1>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-                <!-- Exécution des TI avec Failsafe -->
-                <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven-failsafe-plugin.version}</version>
-                    <configuration>
-                        <runOrder>alphabetical</runOrder>
-                        <!-- Sets the VM argument line used when integration tests are run. -->
-                        <argLine>${failsafeArgLine}</argLine>
-                        <!-- Skips unit tests if the value of verify.skip property is true -->
-                        <skip>${verify.skip}</skip>
-                        <includes>
-                            <include>**/*IT.*</include>
-                        </includes>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>integration-tests</id>
-                            <phase>integration-test</phase>
-                            <goals>
-                                <goal>integration-test</goal>
-                            </goals>
-                        </execution>
-                        <!-- to exit in error on test fail -->
-                        <execution>
-                            <id>verify-integration-tests</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- A Maven plugin to create archives of your project's sources, classes, dependencies etc.
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
+        </plugin>
+        <!-- The Compiler Plugin is used to compile the sources of your project. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+        </plugin>
+        <!-- Tests -->
+        <!-- Gestion des Tests avec Jacoco -->
+        <!-- You can run jacoco in the default profile with: mvn jacoco:prepare-agent test jacoco:report -->
+        <!-- The JaCoCo Maven Plugin provides the JaCoCo runtime agent to your tests and allows basic report creation. -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+          <executions>
+            <!-- UNIT TESTS -->
+            <!-- Prepares the property pointing to the JaCoCo runtime agent which is passed as VM argument when Maven the Surefire plugin is executed. -->
+            <execution>
+              <id>pre-unit-test</id>
+              <phase>test-compile</phase>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              <configuration>
+                <!-- Skips unit tests if the value of unit.test.skip property is true -->
+                <skip>${unit.test.skip}</skip>
+                <!-- Sets the path to the file which contains the execution data. -->
+                <destFile>${jacoco.utReportPath}</destFile>
+                <dataFile>${jacoco.utReportPath}</dataFile>
+                <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
+                <propertyName>surefireArgLine</propertyName>
+              </configuration>
+            </execution>
+            <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
+            <execution>
+              <id>post-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <configuration>
+                <!-- Skips unit tests if the value of unit.test.skip property is true -->
+                <skip>${unit.test.skip}</skip>
+                <!-- Sets the path to the file which contains the execution data. -->
+                <dataFile>${jacoco.utReportPath}</dataFile>
+                <!-- Sets the output directory for the code coverage report. -->
+                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+              </configuration>
+            </execution>
+            <!-- INTEGRATION TESTS -->
+            <!-- Prepares the property pointing to the JaCoCo runtime agent which is passed as VM argument when Maven the Surefire plugin is executed. -->
+            <execution>
+              <id>pre-integration-test</id>
+              <phase>pre-integration-test</phase>
+              <goals>
+                <goal>prepare-agent-integration</goal>
+              </goals>
+              <configuration>
+                <!-- Skips unit tests if the value of verify.skip property is true -->
+                <skip>${verify.skip}</skip>
+                <!-- Sets the path to the file which contains the execution data. -->
+                <destFile>${jacoco.itReportPath}</destFile>
+                <dataFile>${jacoco.itReportPath}</dataFile>
+                <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
+                <propertyName>failsafeArgLine</propertyName>
+              </configuration>
+            </execution>
+            <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
+            <execution>
+              <id>post-integration-test</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>report-integration</goal>
+              </goals>
+              <configuration>
+                <!-- Skips unit tests if the value of verify.skip property is true -->
+                <skip>${verify.skip}</skip>
+                <!-- Sets the path to the file which contains the execution data. -->
+                <dataFile>${jacoco.itReportPath}</dataFile>
+                <!-- Sets the output directory for the code coverage report. -->
+                <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+              </configuration>
+            </execution>
+            <execution>
+              <id>merge-unit-and-integration</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>merge</goal>
+              </goals>
+              <configuration>
+                <fileSets>
+                  <fileSet>
+                    <directory>${project.build.directory}/coverage-reports/</directory>
+                    <includes>
+                      <include>*.exec</include>
+                    </includes>
+                  </fileSet>
+                </fileSets>
+                <destFile>${project.build.directory}/coverage-reports/merged.exec</destFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>create-merged-report</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>report-aggregate</goal>
+              </goals>
+              <configuration>
+                <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
+                <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Exécution des TU avec Surfire -->
+        <!-- Maven Surefire MOJO in maven-surefire-plugin. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <configuration>
+            <testFailureIgnore>false</testFailureIgnore>
+            <runOrder>alphabetical</runOrder>
+            <!-- Sets the VM argument line used when unit tests are run. -->
+            <argLine>${surefireArgLine}</argLine>
+            <!-- Skips unit tests if the value of unit.test.skip property is true -->
+            <skip>${unit.test.skip}</skip>
+            <!-- Excludes integration tests when unit tests are run. -->
+            <excludes>
+              <exclude>**/*IT.*</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <!-- Builds a Java Archive (JAR) file from the compiled project classes and resources. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven-jar-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>default-jar</id>
+              <phase>none</phase>
+            </execution>
+          </executions>
+          <configuration>
+            <archive>
+              <manifest>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+              </manifest>
+              <manifestEntries>
+                <Specification-Title>${project.name}</Specification-Title>
+                <Specification-Version>${project.version}</Specification-Version>
+                <Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
+                <Implementation-Build-Time>${maven.build.timestamp}</Implementation-Build-Time>
+                <X-Git-SHA-1>${git.commit.id.abbrev}</X-Git-SHA-1>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <!-- Exécution des TI avec Failsafe -->
+        <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${maven-failsafe-plugin.version}</version>
+          <configuration>
+            <runOrder>alphabetical</runOrder>
+            <!-- Sets the VM argument line used when integration tests are run. -->
+            <argLine>${failsafeArgLine}</argLine>
+            <!-- Skips unit tests if the value of verify.skip property is true -->
+            <skip>${verify.skip}</skip>
+            <includes>
+              <include>**/*IT.*</include>
+            </includes>
+          </configuration>
+          <executions>
+            <execution>
+              <id>integration-tests</id>
+              <phase>integration-test</phase>
+              <goals>
+                <goal>integration-test</goal>
+              </goals>
+            </execution>
+            <!-- to exit in error on test fail -->
+            <execution>
+              <id>verify-integration-tests</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- A Maven plugin to create archives of your project's sources, classes, dependencies etc.
                      from flexible assembly descriptors. -->
-                <!-- Goal qui construit un fichier JAR (Java Archive) executable à partir des ressources et des classes de projet compilées. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven-assembly-plugin.version}</version>
-                    <configuration>
-                        <skipAssembly>${maven-assembly-plugin-skip}</skipAssembly>
-                        <!-- get all project dependencies -->
-                        <descriptorRefs>
-                            <descriptorRef>jar-with-dependencies</descriptorRef>
-                        </descriptorRefs>
-                        <!-- MainClass in mainfest make a executable jar -->
-                        <archive>
-                            <manifest>
-                                <mainClass>${main-class}</mainClass>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <Specification-Title>${project.name}</Specification-Title>
-                                <Specification-Version>${project.version}</Specification-Version>
-                                <Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
-                                <Implementation-Build-Time>${maven.build.timestamp}</Implementation-Build-Time>
-                                <X-Git-SHA-1>${git.commit.id.abbrev}</X-Git-SHA-1>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>make-assembly</id>
-                            <!-- bind to the packaging phase -->
-                            <phase>package</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- The Maven Source Plugin creates a JAR archive of the source files of the current project. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- The Apache Maven Javadoc Plugin is a plugin that uses the javadoc tool for generating javadocs for the specified project. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- Provides utility goals to work with dependencies like copying, unpacking, analyzing, resolving and many more. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>${maven-dependency-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>analyze</id>
-                            <goals>
-                                <goal>analyze-only</goal>
-                            </goals>
-                            <configuration>
-                                <failOnWarning>true</failOnWarning>
-                                <ignoreNonCompile>true</ignoreNonCompile>
-                                <ignoredUnusedDeclaredDependencies>
-                                    <ignoredUnusedDeclaredDependency>org.apache.logging.log4j:log4j-core::</ignoredUnusedDeclaredDependency>
-                                </ignoredUnusedDeclaredDependencies>
-                                <outputXML>true</outputXML>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <!-- Goal qui construit un fichier JAR (Java Archive) executable à partir des ressources et des classes de projet compilées. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>${maven-assembly-plugin.version}</version>
+          <configuration>
+            <skipAssembly>${maven-assembly-plugin-skip}</skipAssembly>
+            <!-- get all project dependencies -->
+            <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
+            <!-- MainClass in mainfest make a executable jar -->
+            <archive>
+              <manifest>
+                <mainClass>${main-class}</mainClass>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+              </manifest>
+              <manifestEntries>
+                <Specification-Title>${project.name}</Specification-Title>
+                <Specification-Version>${project.version}</Specification-Version>
+                <Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
+                <Implementation-Build-Time>${maven.build.timestamp}</Implementation-Build-Time>
+                <X-Git-SHA-1>${git.commit.id.abbrev}</X-Git-SHA-1>
+              </manifestEntries>
+            </archive>
+          </configuration>
+          <executions>
+            <execution>
+              <id>make-assembly</id>
+              <!-- bind to the packaging phase -->
+              <phase>package</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- The Maven Source Plugin creates a JAR archive of the source files of the current project. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven-source-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- The Apache Maven Javadoc Plugin is a plugin that uses the javadoc tool for generating javadocs for the specified project. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${maven-javadoc-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Provides utility goals to work with dependencies like copying, unpacking, analyzing, resolving and many more. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${maven-dependency-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>analyze</id>
+              <goals>
+                <goal>analyze-only</goal>
+              </goals>
+              <configuration>
+                <failOnWarning>true</failOnWarning>
+                <ignoreNonCompile>true</ignoreNonCompile>
+                <ignoredUnusedDeclaredDependencies>
+                  <ignoredUnusedDeclaredDependency>org.apache.logging.log4j:log4j-core::</ignoredUnusedDeclaredDependency>
+                </ignoredUnusedDeclaredDependencies>
+                <outputXML>true</outputXML>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 
+    <plugins>
+      <!-- The Maven Clean Plugin is a plugin that removes files generated at build-time in a project's directory. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>${maven-clean-plugin.version}</version>
+      </plugin>
+      <!-- This plugin makes basic repository information available through maven resources. -->
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+      </plugin>
+      <!-- The JaCoCo Maven Plugin provides the JaCoCo runtime agent to your tests and allows basic report creation. -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+      <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+      <!-- Provides utility goals to work with dependencies like copying, unpacking, analyzing, resolving and many more. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+      <!-- Copies the project artifacts to the user's local repository. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>${maven-install-plugin.version}</version>
+      </plugin>
+      <!-- Uploads the project artifacts to the internal remote repository. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>${maven-deploy-plugin.version}</version>
+      </plugin>
+      <!-- The Maven Site Plugin is a plugin that generates a site for the current project -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${maven-site-plugin.version}</version>
+        <configuration>
+          <!-- Je veux le site en français -->
+          <locales>fr</locales>
+        </configuration>
+      </plugin>
+      <!-- The Maven Project Info Reports Plugin is a plugin that generates standard reports for the specified project. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>${maven-project-info-reports-plugin}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${maven-jxr-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco-maven-plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <id>jacoco-report</id>
+            <reports>
+              <report>report</report>
+            </reports>
+            <configuration>
+              <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+            </configuration>
+          </reportSet>
+          <reportSet>
+            <id>jacoco-report-integration</id>
+            <reports>
+              <report>report-integration</report>
+            </reports>
+            <configuration>
+              <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+            </configuration>
+          </reportSet>
+          <reportSet>
+            <id>jacoco-report-aggregate</id>
+            <reports>
+              <report>report-aggregate</report>
+            </reports>
+            <configuration>
+              <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
+            </configuration>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <id>unit-tests</id>
+            <reports>
+              <report>report-only</report>
+            </reports>
+          </reportSet>
+          <reportSet>
+            <id>integration-tests</id>
+            <reports>
+              <report>failsafe-report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>javadoc-no-fork</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>project-controls-check</id>
+      <build>
         <plugins>
-            <!-- The Maven Clean Plugin is a plugin that removes files generated at build-time in a project's directory. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven-clean-plugin.version}</version>
-            </plugin>
-            <!-- This plugin makes basic repository information available through maven resources. -->
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-            </plugin>
-            <!-- The JaCoCo Maven Plugin provides the JaCoCo runtime agent to your tests and allows basic report creation. -->
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
-            <!-- Maven Failsafe MOJO in maven-failsafe-plugin. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-            </plugin>
-            <!-- Provides utility goals to work with dependencies like copying, unpacking, analyzing, resolving and many more. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
-            <!-- Copies the project artifacts to the user's local repository. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>${maven-install-plugin.version}</version>
-            </plugin>
-            <!-- Uploads the project artifacts to the internal remote repository. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>${maven-deploy-plugin.version}</version>
-            </plugin>
-            <!-- The Maven Site Plugin is a plugin that generates a site for the current project -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>${maven-site-plugin.version}</version>
-                <configuration>
-                    <!-- Je veux le site en français -->
-                    <locales>fr</locales>
-                </configuration>
-            </plugin>
-            <!-- The Maven Project Info Reports Plugin is a plugin that generates standard reports for the specified project. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>${maven-project-info-reports-plugin}</version>
-            </plugin>
-        </plugins>
-    </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>${maven-jxr-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <id>jacoco-report</id>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                        <configuration>
-                            <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
-                        </configuration>
-                    </reportSet>
-                    <reportSet>
-                        <id>jacoco-report-integration</id>
-                        <reports>
-                            <report>report-integration</report>
-                        </reports>
-                        <configuration>
-                            <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
-                        </configuration>
-                    </reportSet>
-                    <reportSet>
-                        <id>jacoco-report-aggregate</id>
-                        <reports>
-                            <report>report-aggregate</report>
-                        </reports>
-                        <configuration>
-                            <dataFile>${project.build.directory}/coverage-reports/merged.exec</dataFile>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <id>unit-tests</id>
-                        <reports>
-                            <report>report-only</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <id>integration-tests</id>
-                        <reports>
-                            <report>failsafe-report-only</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>javadoc-no-fork</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
-
-    <profiles>
-        <profile>
-            <id>project-controls-check</id>
-            <build>
-                <plugins>
-                    <!-- The Enforcer plugin provides goals to control certain environmental constraints such as Maven version,
+          <!-- The Enforcer plugin provides goals to control certain environmental constraints such as Maven version,
                  JDK version and OS family along with many more built-in rules and user created rules. -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-enforcer-plugin</artifactId>
-                        <version>${maven-enforcer-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>enforce-rules-controls</id>
-                                <goals>
-                                    <goal>enforce</goal>
-                                </goals>
-                                <configuration>
-                                    <rules>
-                                        <requireMavenVersion>
-                                            <version>${maven.version}</version>
-                                        </requireMavenVersion>
-                                        <requireJavaVersion>
-                                            <version>${java.version}</version>
-                                        </requireJavaVersion>
-                                        <requirePluginVersions>
-                                            <message>Définissez plugin.version !</message>
-                                        </requirePluginVersions>
-                                        <banDuplicatePomDependencyVersions>
-                                            <message>enforces that the project doesn't have duplicate declared dependencies.</message>
-                                        </banDuplicatePomDependencyVersions>
-                                        <bannedDependencies>
-                                            <searchTransitive>true</searchTransitive>
-                                            <!-- <excludes>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>${maven-enforcer-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>enforce-rules-controls</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireMavenVersion>
+                      <version>${maven.version}</version>
+                    </requireMavenVersion>
+                    <requireJavaVersion>
+                      <version>${java.version}</version>
+                    </requireJavaVersion>
+                    <requirePluginVersions>
+                      <message>Définissez plugin.version !</message>
+                    </requirePluginVersions>
+                    <banDuplicatePomDependencyVersions>
+                      <message>enforces that the project doesn't have duplicate declared dependencies.</message>
+                    </banDuplicatePomDependencyVersions>
+                    <bannedDependencies>
+                      <searchTransitive>true</searchTransitive>
+                      <!-- <excludes>
                                                 <exclude>commons-logging:commons-logging</exclude>
                                                 <exclude>log4j:log4j</exclude>
                                                 <exclude>org.apache.httpcomponents:httpclient:(4.3]</exclude>
@@ -666,52 +666,52 @@
                                             <includes>
                                                 <include>org.mockito:mockito-all:*:*:test</include>
                                             </includes> -->
-                                            <message>A banned dependency or plugin was found!</message>
-                                        </bannedDependencies>
-                                        <dependencyConvergence />
-                                        <requireReleaseDeps>
-                                            <message>No Snapshots Allowed in releases!</message>
-                                            <onlyWhenRelease>true</onlyWhenRelease>
-                                        </requireReleaseDeps>
-                                        <requireUpperBoundDeps>
-                                            <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
-                                            <!-- <uniqueVersions>true</uniqueVersions> -->
-                                            <!-- If you wish to ignore certain cases:
+                      <message>A banned dependency or plugin was found!</message>
+                    </bannedDependencies>
+                    <dependencyConvergence />
+                    <requireReleaseDeps>
+                      <message>No Snapshots Allowed in releases!</message>
+                      <onlyWhenRelease>true</onlyWhenRelease>
+                    </requireReleaseDeps>
+                    <requireUpperBoundDeps>
+                      <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
+                      <!-- <uniqueVersions>true</uniqueVersions> -->
+                      <!-- If you wish to ignore certain cases:
                                             <excludes>
                                                 <exclude>com.google.guava:guava</exclude>
                                             </excludes> -->
-                                        </requireUpperBoundDeps>
-                                    </rules>
-                                    <skip>${maven.main.skip}</skip>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>enforce-display-info</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>display-info</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- The Versions Plugin is used when you want to manage the versions of artifacts in a project's POM. -->
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>versions-maven-plugin</artifactId>
-                        <version>${versions-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>display-plugin-updates</goal>
-                                    <goal>display-dependency-updates</goal>
-                                    <goal>display-property-updates</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+                    </requireUpperBoundDeps>
+                  </rules>
+                  <skip>${maven.main.skip}</skip>
+                </configuration>
+              </execution>
+              <execution>
+                <id>enforce-display-info</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>display-info</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- The Versions Plugin is used when you want to manage the versions of artifacts in a project's POM. -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>${versions-maven-plugin.version}</version>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>display-plugin-updates</goal>
+                  <goal>display-dependency-updates</goal>
+                  <goal>display-property-updates</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

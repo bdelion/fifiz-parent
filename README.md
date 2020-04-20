@@ -14,8 +14,8 @@
 
 > `java-parent` est un pom qui permet de gérer pour mes dév Java Training :
 >
-> * les versions des dépendances obligatoires.
-> * les phases de builds communes.
+> -   les versions des dépendances obligatoires.
+> -   les phases de builds communes.
 
 ## :house: [Homepage]
 
@@ -33,13 +33,13 @@ Ajouter au `pom.xml` de votre composant :
 
 ## :construction_worker: Fabriqué avec
 
-* [Visual Studio Code] - Editeur de code source.
+-   [Visual Studio Code] - Editeur de code source.
 
 ## :busts_in_silhouette: Authors
 
 :bust_in_silhouette: **Bertrand DELION**
 
-* Github: [@bdelion]
+-   Github: [@bdelion]
 
 Voir aussi la liste des [contributeurs] ayant participés à ce projet.
 
@@ -60,30 +60,29 @@ Pour les versions disponibles, voir [les tags de ce projet].
 
 ## :link: Liens utiles
 
-* :pencil: Documentation : [Wiki]
-* :building_construction: Build :
-  * [Job Travis CI]
-  * [Github Actions]
-* Repository : [GitHub Package Registry]
+-   :pencil: Documentation : [Wiki]
+-   :building_construction: Build :
+    -   [Job Travis CI]
+    -   [Github Actions]
+-   Repository : [GitHub Package Registry]
 
 ## :spider_web: Dependency
 
-* [Dependencies] - Dépendances de ce projet
-* [Dependents] - Projets dépendants de celui-ci
+-   [Dependencies] - Dépendances de ce projet
+-   [Dependents] - Projets dépendants de celui-ci
 
-
-[Make a README]: https://www.makeareadme.com/#template-1
-[Homepage]: https://github.com/bdelion/java-parent/tree/master
-[Visual Studio Code]: https://code.visualstudio.com/
+[make a readme]: https://www.makeareadme.com/#template-1
+[homepage]: https://github.com/bdelion/java-parent/tree/master
+[visual studio code]: https://code.visualstudio.com/
 [@bdelion]: https://github.com/bdelion
 [contributeurs]: https://github.com/bdelion/java-parent/graphs/contributors
-[CHANGELOG]: CHANGELOG.md
+[changelog]: CHANGELOG.md
 [issues]: https://github.com/bdelion/java-parent/issues
-[SemVer]: http://semver.org/
+[semver]: http://semver.org/
 [les tags de ce projet]: https://github.com/bdelion/java-parent/tags
-[Wiki]: https://github.com/bdelion/java-parent/wiki
-[Job Travis CI]: https://travis-ci.com/bdelion/java-parent
-[Github Actions]: https://github.com/bdelion/java-parent/actions
-[GitHub Package Registry]: https://github.com/bdelion/java-parent/packages
-[Dependencies]: https://github.com/bdelion/java-parent/network/dependencies
-[Dependents]: https://github.com/bdelion/java-parent/network/dependents
+[wiki]: https://github.com/bdelion/java-parent/wiki
+[job travis ci]: https://travis-ci.com/bdelion/java-parent
+[github actions]: https://github.com/bdelion/java-parent/actions
+[github package registry]: https://github.com/bdelion/java-parent/packages
+[dependencies]: https://github.com/bdelion/java-parent/network/dependencies
+[dependents]: https://github.com/bdelion/java-parent/network/dependents
