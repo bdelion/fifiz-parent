@@ -1,6 +1,9 @@
 # Created by https://www.gitignore.io/api/git,java,maven,eclipse,intellij,intellij+all,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=git,java,maven,eclipse,intellij,intellij+all,visualstudiocode
 
+### git-changelog-maven-plugin ###
+.okhttpcache/
+
 ### Eclipse ###
 .metadata
 bin/

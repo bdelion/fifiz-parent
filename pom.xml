@@ -135,6 +135,7 @@
     <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
     <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
+    <git-changelog-maven-plugin.version>1.61</git-changelog-maven-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -546,6 +547,25 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>${maven-project-info-reports-plugin}</version>
+      </plugin>
+      <!-- Maven plugin that can generate a changelog from git repo. -->
+      <plugin>
+        <groupId>se.bjurr.gitchangelog</groupId>
+        <artifactId>git-changelog-maven-plugin</artifactId>
+        <version>${git-changelog-maven-plugin.version}</version>
+        <executions>
+          <!-- Minimal config // -->
+          <execution>
+            <id>generate-min-git-changelog</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>git-changelog</goal>
+            </goals>
+            <configuration>
+              <file>CHANGELOG_minimal.md</file>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
