@@ -134,6 +134,7 @@
     <!-- Site and Report generation -->
     <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+    <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -620,6 +621,11 @@
             </reports>
           </reportSet>
         </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId>
+        <version>${maven-changelog-plugin.version}</version>
       </plugin>
     </plugins>
   </reporting>
