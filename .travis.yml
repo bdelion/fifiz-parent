@@ -4,16 +4,25 @@ jdk:
 cache:
   directories:
     - $HOME/.m2
-install: true
+install: skip
+
+stages:
+  - name: Get Maven Project information
+  - name: Build, Test and Verify with Maven
+  - name: Deploy and make Site
+    if: type = push AND branch =~ /^((develop|master)|((release|hotfix|support)\/(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?))$/
 
 jobs:
   include:
     - stage: Get Maven Project information
-      script:
-        - echo $(mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
-        - echo $(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
-        - echo $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
-        - echo $(mvn help:evaluate -Dexpression=project.packaging -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
+      name: Get groupId
+      script: echo $(mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
+    - script: echo $(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
+      name: Get artifactId
+    - script: echo $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
+      name: Get version
+    - script: echo $(mvn help:evaluate -Dexpression=project.packaging -q -DforceStdout --file pom.xml --settings .github/workflows/settings.xml)
+      name: Get packaging
 
     - stage: Build, Test and Verify with Maven
       script:
@@ -21,16 +30,8 @@ jobs:
         - mvn -U -Dmaven.main.skip test --file pom.xml --settings .github/workflows/settings.xml
         - mvn -U -Dmaven.main.skip -Dunit.test.skip verify --file pom.xml --settings .github/workflows/settings.xml
 
-    - stage: Publish to GitHub Packages Apache Maven
+    - stage: Deploy and make Site
+      name: Publish to GitHub Packages Apache Maven
       script:
         - mvn -U -Dmaven.main.skip -Dunit.test.skip -Dverify.skip jar:jar@default-jar assembly:single@make-assembly source:jar-no-fork@attach-sources javadoc:jar@attach-javadocs deploy --file pom.xml --settings .github/workflows/settings.xml
-
-    - stage: Site with Maven
-      script:
         - mvn -U site --file pom.xml --settings .github/workflows/settings.xml
-
-stages:
-  - name: Publish to GitHub Packages Apache Maven
-    if: type = push AND branch =~ /^((develop|master)|((release|hotfix|support)\/(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?))$/
-  - name: Site with Maven
-    if: type = push AND branch =~ /^((develop|master)|((release|hotfix|support)\/(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?))$/
