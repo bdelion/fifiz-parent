@@ -108,8 +108,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.optimize>true</maven.compiler.optimize>
     <maven.compiler.debug>true</maven.compiler.debug>
-    <maven.compiler.showDeprecation>false</maven.compiler.showDeprecation>
-    <maven.compiler.showWarnings>false</maven.compiler.showWarnings>
+    <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+    <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <!-- END - maven.compiler properties -->
     <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
     <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
@@ -122,19 +122,28 @@
     <!-- Tests -->
     <junit.version>5.6.2</junit.version>
     <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+    <surefire.reportsDirectory>${project.build.directory}/surefire-reports</surefire.reportsDirectory>
     <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
     <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     <jacoco.utReportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.utReportPath>
     <jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.itReportPath>
-    <!-- FIXME https://bcouetil.gitlab.io/academy/BP-maven.html#sonarqube-with-jacoco-for-coverage
-            <sonar.jacoco.reportPaths>${jacoco.utReportPath}, ${jacoco.itReportPath}</sonar.jacoco.reportPaths>
-        -->
     <!-- Assembly -->
     <maven-assembly-plugin-skip>true</maven-assembly-plugin-skip>
     <!-- Site and Report generation -->
     <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
     <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
+    <!-- Code Quality -->
+    <sonar-maven-plugin.version>3.7.0.1746</sonar-maven-plugin.version>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.organization>bdelion-github</sonar.organization>
+    <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
+    <sonar.projectName>${project.name}</sonar.projectName>
+    <sonar.projectVersion>${project.version}</sonar.projectVersion>
+    <sonar.sourceEncoding>${project.build.sourceEncoding}</sonar.sourceEncoding>
+    <!-- FIXME https://bcouetil.gitlab.io/academy/BP-maven.html#sonarqube-with-jacoco-for-coverage -->
+    <sonar.junit.reportPaths>${surefire.reportsDirectory}</sonar.junit.reportPaths>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco-it/jacoco.xml,${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml,${project.reporting.outputDirectory}/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
   </properties>
 
   <dependencyManagement>
@@ -326,6 +335,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire-plugin.version}</version>
           <configuration>
+            <reportsDirectory>${surefire.reportsDirectory}</reportsDirectory>
             <testFailureIgnore>false</testFailureIgnore>
             <runOrder>alphabetical</runOrder>
             <!-- Sets the VM argument line used when unit tests are run. -->
@@ -546,6 +556,12 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>${maven-project-info-reports-plugin}</version>
+      </plugin>
+      <!-- Trigger SonarQube analysis on Maven projects -->
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>${sonar-maven-plugin.version}</version>
       </plugin>
     </plugins>
   </build>

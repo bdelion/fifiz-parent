@@ -6,7 +6,7 @@
 
 ![Maven CI for Java](https://github.com/bdelion/java-parent/workflows/Maven%20CI%20for%20Java/badge.svg?branch=develop) [![Travis CI Build Status](https://travis-ci.com/bdelion/java-parent.svg?branch=develop)](https://travis-ci.com/bdelion/java-parent)
 
-[![Known Vulnerabilities](https://snyk.io/test/github/bdelion/java-parent/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/bdelion/java-parent?targetFile=pom.xml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=develop&project=fr.fifiz.socle.java%3Ajava-parent&metric=alert_status)](https://sonarcloud.io/dashboard?id=fr.fifiz.socle.java%3Ajava-parent&branch=develop) [![Known Vulnerabilities](https://snyk.io/test/github/bdelion/java-parent/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/bdelion/java-parent?targetFile=pom.xml)
 
 <p>
 <a href="https://sourcerer.io/bdelion"><img src="https://sourcerer.io/icons/logo-sharing.svg" height="24px" alt="Sourcerer"></a> <a href="https://www.gitmemory.com/bdelion"><img src="https://www.gitmemory.com/images/logo.png" height="24px" alt="gitMemory"></a>
