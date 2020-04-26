@@ -72,20 +72,20 @@ jobs:
           replace-with: "$1-${{ steps.short-sha.outputs.COMMIT_ID_SHORT }}-SNAPSHOT"
       - name: Create version number RELEASE CANDIDATE
         id: create-version-rc
-        if: ( steps.set-release-candidate-mode.outputs.CREATE_RC == 'true' )
+        #TOREVERT if: ( steps.set-release-candidate-mode.outputs.CREATE_RC == 'true' )
         uses: frabert/replace-string-action@v1.1
         with:
           pattern: "^(.*)-SNAPSHOT$"
           string: ${{ steps.maven-project-info.outputs.VERSION }}
           replace-with: "$1-rc.${{ github.run_number }}"
-      - name: Set version number SNAPSHOT
-        if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' ) && ( steps.set-release-candidate-mode.outputs.CREATE_RC != 'true' )
-        run: |
-          echo "Original version: ${{ steps.maven-project-info.outputs.VERSION }}"
-          echo "New version: ${{ steps.create-version-snapshot.outputs.replaced }}"
-          mvn versions:set -DnewVersion=${{ steps.create-version-snapshot.outputs.replaced }} --file pom.xml
+      #TOREVERT - name: Set version number SNAPSHOT
+      #TOREVERT   if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' ) && ( steps.set-release-candidate-mode.outputs.CREATE_RC != 'true' )
+      #TOREVERT   run: |
+      #TOREVERT     echo "Original version: ${{ steps.maven-project-info.outputs.VERSION }}"
+      #TOREVERT     echo "New version: ${{ steps.create-version-snapshot.outputs.replaced }}"
+      #TOREVERT     mvn versions:set -DnewVersion=${{ steps.create-version-snapshot.outputs.replaced }} --file pom.xml
       - name: Set version number RELEASE CANDIDATE
-        if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' ) && ( steps.set-release-candidate-mode.outputs.CREATE_RC == 'true' )
+        #TOREVERT if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' ) && ( steps.set-release-candidate-mode.outputs.CREATE_RC == 'true' )
         run: |
           echo "Original version: ${{ steps.maven-project-info.outputs.VERSION }}"
           echo "New version: ${{ steps.create-version-rc.outputs.replaced }}"
