@@ -8,6 +8,7 @@ on:
       - 'master'
       - 'hotfix/*'
       - 'support/*'
+      - 'bugfix/*' #TOREVERT
 
 jobs:
   maven-build-test-verify:
