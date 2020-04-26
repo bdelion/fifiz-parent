@@ -106,7 +106,7 @@ jobs:
         with:
           pattern: "^(.*)-SNAPSHOT$"
           string: ${{ steps.maven-project-info.outputs.VERSION }}
-          replace-with: "$1-rc.${{ GITHUB_RUN_NUMBER }}"
+          replace-with: "$1-rc.$GITHUB_RUN_NUMBER"
       - name: Set version number
         if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' )
         run: |
