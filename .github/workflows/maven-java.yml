@@ -112,13 +112,13 @@ jobs:
         run: |
           echo "Original version: ${{ steps.maven-project-info.outputs.VERSION }}"
           echo "New version: ${{ steps.create-version-snapshot.outputs.replaced }}"
-#TODO           mvn versions:set -DnewVersion=${{ steps.create-version-snapshot.outputs.replaced }} --file pom.xml
+          mvn versions:set -DnewVersion=${{ steps.create-version-snapshot.outputs.replaced }} --file pom.xml
       - name: Set version number RELEASE CANDIDATE
         if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' ) && ( steps.set-release-candidate-mode.outputs.CREATE_RC == 'true' )
         run: |
           echo "Original version: ${{ steps.maven-project-info.outputs.VERSION }}"
           echo "New version: ${{ steps.create-version-rc.outputs.replaced }}"
-#TODO           mvn versions:set -DnewVersion=${{ steps.create-version-rc.outputs.replaced }} --file pom.xml
+          mvn versions:set -DnewVersion=${{ steps.create-version-rc.outputs.replaced }} --file pom.xml
       - name: Build with Maven
         run: mvn -U clean compile -Pproject-controls-check --file pom.xml --settings .github/workflows/settings.xml
         env:
@@ -140,7 +140,7 @@ jobs:
       #TODO run: mvn -U '-Dsonar.links.scm=http://gitxxx' '-Dsonar.links.ci=http://jenkinsxxx' org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar '-Dsonar.projectKey=[groupId]-[artifactId]' '-Dsonar.branch.name=develop' '-Dsonar.projectName=[artifactId]r' '-Dsonar.buildbreaker.skip=true' '-Dsonar.projectVersion=#d0b75832'
       - name: Quality Gate [SonarCloud.io]
       #TODO run: mvn -U '-Dsonar.links.scm=http://gitxxx' '-Dsonar.links.ci=http://jenkinsxxx' org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar '-Dsonar.projectKey=[groupId]-[artifactId]' '-Dsonar.branch.name=develop' '-Dsonar.projectName=[artifactId]' '-Dsonar.gitlab.ref_name=b7c32ea3401d64f97eecc4dd46de331b00391cd7' '-Dsonar.gitlab.commit_sha=b7c32ea3401d64f97eecc4dd46de331b00391cd7' '-Dsonar.gitlab.project_id=3555'
-        run: mvn -U -Dsonar.branch.name=steps.get-branche-name.outputs.BRANCHE_NAME -Dsonar.gitlab.commit_sha=${GITHUB_SHA} sonar:sonar --file pom.xml --settings .github/workflows/settings.xml
+        run: mvn -U -Dsonar.branch.name=${{ steps.get-branche-name.outputs.BRANCHE_NAME }} -Dsonar.gitlab.commit_sha=${GITHUB_SHA} sonar:sonar --file pom.xml --settings .github/workflows/settings.xml
         env:
           SERVER_USERNAME: $GITHUB_ACTOR
           SERVER_PASSWORD: ${{ secrets.MVN_PCKGS_REPO_TOKEN}}
