@@ -106,9 +106,9 @@ jobs:
         with:
           pattern: "^(.*)-SNAPSHOT$"
           string: ${{ steps.maven-project-info.outputs.VERSION }}
-          replace-with: "$1-rc.${GITHUB_RUN_NUMBER}"
+          replace-with: "$1-rc.${{ GITHUB_RUN_NUMBER }}"
       - name: Set version number
-        if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' ) && ( steps.maven-project-info.outputs.PACKAGING != 'pom' )
+        if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' )
         run: |
           echo "New version: ${{ steps.create-version-number.outputs.replaced }}"
 #TODO           mvn versions:set -DnewVersion=${{ steps.create-version-number.outputs.replaced }} --file pom.xml
