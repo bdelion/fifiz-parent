@@ -106,7 +106,7 @@ jobs:
         with:
           pattern: "^(.*)-SNAPSHOT$"
           string: ${{ steps.maven-project-info.outputs.VERSION }}
-          replace-with: "$1-rc.${{ github.run_number }}"
+          replace-with: "$1-rc.${{ github.run_number }}-SNAPSHOT"
       #TOREVERT - name: Set version number SNAPSHOT
       #TOREVERT   if: endsWith( steps.maven-project-info.outputs.VERSION, '-SNAPSHOT' ) && ( steps.set-release-candidate-mode.outputs.CREATE_RC != 'true' )
       #TOREVERT   run: |
