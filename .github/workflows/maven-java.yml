@@ -149,7 +149,7 @@ jobs:
         run: |
           curl -u "${{ secrets.SONAR_TOKEN }}" -X POST "${{ steps.maven-project-info.outputs.SONAR_HOST_URL }}/api/project_tags/set?project=${{ steps.maven-project-info.outputs.SONAR_PROJECT_KEY }}&tags=socle,java"
       - name: Publish to GitHub Packages Apache Maven
-        run: mvn -U -Dmaven.main.skip -Dunit.test.skip -Dverify.skip jar:jar@default-jar assembly:single@make-assembly source:jar-no-fork@attach-sources javadoc:jar@attach-javadocs deploy --file pom.xml --settings .github/workflows/settings.xml
+        run: mvn -U -Ddescription=descriptionTOREVERT -Dmaven.main.skip -Dunit.test.skip -Dverify.skip jar:jar@default-jar assembly:single@make-assembly source:jar-no-fork@attach-sources javadoc:jar@attach-javadocs deploy --file pom.xml --settings .github/workflows/settings.xml
         env:
           SERVER_USERNAME: $GITHUB_ACTOR
           SERVER_PASSWORD: ${{ secrets.MVN_PCKGS_REPO_TOKEN}}
